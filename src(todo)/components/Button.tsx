@@ -5,7 +5,7 @@ type ButtonPropsType = {
     value: string
 }
 
-export const Button = (props: ButtonPropsType) => {
+export function Button(props: ButtonPropsType) {
     const onClickHandler =() =>{
         props.callBack()
     }

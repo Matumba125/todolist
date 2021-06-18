@@ -3,6 +3,22 @@
   display: flex;
 }
 
-.Todolist > div {
+.App > div {
   margin-right: 50px;
+}
+
+.error {
+  border: red 3px solid;
+}
+
+.errorMessage {
+  color: red;
+}
+
+.activeFilter {
+  background-color: aquamarine;
+}
+
+.isDone {
+  opacity: 0.5;
 }

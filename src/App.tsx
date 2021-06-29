@@ -96,7 +96,7 @@ function App() {
         setTasks({...tasks,[newTodoList.id]: []})
     }
 
-    function changeTaskTitle(title: string, id: string, todoListID: string){
+    function changeTaskTitle( id: string, title: string, todoListID: string){
         tasks[todoListID] = tasks[todoListID].map(t => {
             if (t.id === id) {
                 t.title = title

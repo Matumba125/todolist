@@ -1,7 +1,17 @@
-import React, {ChangeEvent, KeyboardEvent, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import {FilterValuesType} from './App';
 import AddItemForm from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
+import {Button, ButtonGroup, Checkbox, colors, IconButton} from "@material-ui/core";
+import {
+    CheckCircle,
+    CheckCircleOutline, CheckCircleRounded,
+    CheckRounded,
+    Delete,
+    DeleteOutlineRounded,
+    DeleteRounded,
+    Done
+} from "@material-ui/icons";
 
 export type TaskType = {
     id: string
@@ -26,27 +36,26 @@ type PropsType = {
 
 export function Todolist(props: PropsType) {
 
-    const addTask = (title: string) =>{
+    const addTask = (title: string) => {
         props.addTask(title, props.todoListID);
     }
 
-    const onFilterClickHandler = (filterValue: FilterValuesType) =>{
+    const onFilterClickHandler = (filterValue: FilterValuesType) => {
         return () => props.changeTodoListFilter(filterValue, props.todoListID);
     }
 
-    const onClickRemoveTodoList =()=> props.removeTodoList(props.todoListID)
+    const onClickRemoveTodoList = () => props.removeTodoList(props.todoListID)
 
     const onChangeTitleHandler = (newValue: string) => {
         props.changeTodoListTitle(newValue, props.todoListID)
     }
 
     return <div>
-        <h3>
+        <h3 style={{textAlign: "center"}}>
             <EditableSpan title={props.title} onChange={onChangeTitleHandler}/>
-            <button onClick={onClickRemoveTodoList}>x</button>
         </h3>
         <AddItemForm addItem={addTask}/>
-        <ul>
+        <div style={{listStyle: "none", paddingLeft: "0px" }}>
             {
                 props.tasks.map(t => {
 
@@ -60,34 +69,52 @@ export function Todolist(props: PropsType) {
                     }
 
 
-                    return <li key={t.id} className={t.isDone ? 'isDone' : ''}>
-                        <input type="checkbox"
-                               checked={t.isDone}
-                               onChange={isDoneHandler}
+                    return <div key={t.id}>
+                        <Checkbox
+                            size={'small'}
+                            color={'primary'}
+                            checked={t.isDone}
+                            onChange={isDoneHandler}
+                            icon={<CheckCircleRounded />}
+                            checkedIcon={<CheckCircleRounded />}
                         />
+                        <span className={t.isDone ? 'isDone' : ''}>
                         <EditableSpan title={t.title} onChange={onChangeTitleHandler}/>
-                        <button onClick={onClickHandler}>x</button>
-                    </li>
+                        </span>
+                        <IconButton size={'small'} onClick={onClickHandler}>
+                            <DeleteRounded fontSize={"small"}/>
+                        </IconButton>
+                    </div>
                 })
             }
-        </ul>
-        <div>
-            <button
-                className={props.todoListFilter === 'All' ? 'activeFilter' : ''}
+        </div>
+        <ButtonGroup variant="text" aria-label="text primary button group">
+            <Button
+                size="small"
+                style={{margin: "3px"}}
+                color={props.todoListFilter === 'All' ? 'secondary' : 'primary'}
                 onClick={onFilterClickHandler("All")}>
                 All
-            </button>
-            <button
-                className={props.todoListFilter === 'Active' ? 'activeFilter' : ''}
+            </Button>
+            <Button
+                size="small"
+                style={{margin: "3px"}}
+                color={props.todoListFilter === 'Active' ? 'secondary' : 'primary'}
                 onClick={onFilterClickHandler("Active")}>
                 Active
-            </button>
-            <button
-                className={props.todoListFilter === 'Completed' ? 'activeFilter' : ''}
+            </Button>
+            <Button
+                size="small"
+                style={{margin: "3px"}}
+                color={props.todoListFilter === 'Completed' ? 'secondary' : 'primary'}
                 onClick={onFilterClickHandler("Completed")}>
                 Completed
-            </button>
-        </div>
+            </Button>
+        </ButtonGroup>
+            <IconButton style={{margin: "10px 0 0 45px"}} size={'small'} onClick={onClickRemoveTodoList}>
+                <DeleteRounded color={'primary'}/>
+            </IconButton>
+
     </div>
 }
 

@@ -2,16 +2,8 @@ import React, {ChangeEvent} from 'react';
 import {FilterValuesType} from './App';
 import AddItemForm from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
-import {Button, ButtonGroup, Checkbox, colors, IconButton} from "@material-ui/core";
-import {
-    CheckCircle,
-    CheckCircleOutline, CheckCircleRounded,
-    CheckRounded,
-    Delete,
-    DeleteOutlineRounded,
-    DeleteRounded,
-    Done
-} from "@material-ui/icons";
+import {Button, ButtonGroup, Checkbox, IconButton} from "@material-ui/core";
+import { CheckCircleRounded, DeleteRounded} from "@material-ui/icons";
 
 export type TaskType = {
     id: string

@@ -8,7 +8,7 @@ import {Menu} from "@material-ui/icons";
 
 export type FilterValuesType = "All" | "Active" | "Completed";
 
-type TodolistPropsType = {
+export type TodolistType = {
     id: string
     title: string
     filter: FilterValuesType
@@ -23,7 +23,7 @@ function App() {
     const todoListId_1 = v1()
     const todoListId_2 = v1()
 
-    let [todoLists, setTodoLists] = useState<Array<TodolistPropsType>>([
+    let [todoLists, setTodoLists] = useState<Array<TodolistType>>([
         {
             id: todoListId_1,
             title: 'What to learn',
@@ -77,6 +77,18 @@ function App() {
         setTasks({...tasks});
     }
 
+    function changeTaskTitle(id: string, title: string, todoListID: string) {
+        tasks[todoListID] = tasks[todoListID].map(t => {
+            if (t.id === id) {
+                t.title = title
+            }
+            return t
+        })
+        setTasks({...tasks});
+    }
+
+    /////
+
     function changeTodoListFilter(value: FilterValuesType, todoListID: string) {
         setTodoLists(todoLists.map(tl => tl.id === todoListID ? {...tl, filter: value} : tl))
 
@@ -89,23 +101,13 @@ function App() {
     }
 
     function addTodoList(title: string) {
-        const newTodoList: TodolistPropsType = {
+        const newTodoList: TodolistType = {
             id: v1(),
             title: title,
             filter: "All"
         }
         setTodoLists([newTodoList, ...todoLists])
         setTasks({...tasks, [newTodoList.id]: []})
-    }
-
-    function changeTaskTitle(id: string, title: string, todoListID: string) {
-        tasks[todoListID] = tasks[todoListID].map(t => {
-            if (t.id === id) {
-                t.title = title
-            }
-            return t
-        })
-        setTasks({...tasks});
     }
 
     function changeTodoListTitle(title: string, todoListID: string) {

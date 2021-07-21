@@ -1,15 +1,9 @@
 import React, {ChangeEvent} from 'react';
-import {FilterValuesType} from './App';
+import {FilterValuesType, TaskType} from './App';
 import AddItemForm from "./AddItemForm";
 import {EditableSpan} from "./EditableSpan";
 import {Button, ButtonGroup, Checkbox, IconButton} from "@material-ui/core";
-import { CheckCircleRounded, DeleteRounded} from "@material-ui/icons";
-
-export type TaskType = {
-    id: string
-    title: string
-    isDone: boolean
-}
+import {CheckCircleRounded, DeleteRounded} from "@material-ui/icons";
 
 type PropsType = {
     title: string

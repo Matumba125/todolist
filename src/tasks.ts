@@ -33,7 +33,7 @@ export function getTriangleType(a: number, b: number, c: number): string {
 
 export function getSum(number: number): number {
 
-    return number.toString().split('').map(Number).reduce((acc,el) => acc+el )
+    return number.toString().split('').map(Number).reduce((acc, el) => acc + el)
 }
 
 
@@ -45,12 +45,12 @@ export function getSum(number: number): number {
 export const isEvenIndexSumGreater = (arr: Array<number>): boolean => {
     let firstArgument = 0;
     let secondArgument = 0;
-        for(let i = 0; i < arr.length; i+=2){
-            firstArgument += arr[i]
-        }
-        for(let i = 1; i < arr.length; i+=2){
-            secondArgument += arr[i];
-        }
+    for (let i = 0; i < arr.length; i += 2) {
+        firstArgument += arr[i]
+    }
+    for (let i = 1; i < arr.length; i += 2) {
+        secondArgument += arr[i];
+    }
     return firstArgument > secondArgument
 }
 
@@ -60,8 +60,8 @@ export const isEvenIndexSumGreater = (arr: Array<number>): boolean => {
 // квадрата и false в противном случае. Центры фигур совпадают.
 
 export function isSquareGreater(areaCr: number, areaSq: number): boolean {
-    let crLen = Math.sqrt((areaCr/Math.PI))
-    let sqLen = (Math.sqrt(areaSq)/2)
+    let crLen = Math.sqrt((areaCr / Math.PI))
+    let sqLen = (Math.sqrt(areaSq) / 2)
     return sqLen > crLen
 }
 
@@ -77,11 +77,11 @@ export function getBanknoteList(amountOfMoney: number): Array<number> {
     const banknotes = [1000, 500, 100, 50, 20, 10, 5, 2, 1]
     const result = [];
 
-    if(amountOfMoney > 0){
-        for(let i = 0; i < banknotes.length; i++){
+    if (amountOfMoney > 0) {
+        for (let i = 0; i < banknotes.length; i++) {
             let banknote = banknotes[i];
-            while (amountOfMoney - banknote >=0){
-                amountOfMoney -=banknote
+            while (amountOfMoney - banknote >= 0) {
+                amountOfMoney -= banknote
                 result.push(banknote)
             }
         }

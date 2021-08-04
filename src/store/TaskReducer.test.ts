@@ -9,26 +9,27 @@ let todoListId2: string
 
 let startState: TaskStateType
 
-beforeEach(()=>{
+beforeEach(() => {
     todoListId1 = v1();
     todoListId2 = v1();
 
     startState = {
-    [todoListId1]: [
-        {id: v1(), title: "HTML&CSS", isDone: true},
-        {id: v1(), title: "JS", isDone: true},
-        {id: v1(), title: "ReactJS", isDone: false},
-        {id: v1(), title: "Rest", isDone: false},
-        {id: v1(), title: "Redux", isDone: false},
-    ],
+        [todoListId1]: [
+            {id: v1(), title: "HTML&CSS", isDone: true},
+            {id: v1(), title: "JS", isDone: true},
+            {id: v1(), title: "ReactJS", isDone: false},
+            {id: v1(), title: "Rest", isDone: false},
+            {id: v1(), title: "Redux", isDone: false},
+        ],
         [todoListId2]: [
-        {id: v1(), title: "Books", isDone: false},
-        {id: v1(), title: "Notebook", isDone: true},
-        {id: v1(), title: "Ipad", isDone: false},
-        {id: v1(), title: "Cam", isDone: true},
-    ]
+            {id: v1(), title: "Books", isDone: false},
+            {id: v1(), title: "Notebook", isDone: true},
+            {id: v1(), title: "Ipad", isDone: false},
+            {id: v1(), title: "Cam", isDone: true},
+        ]
 
-}})
+    }
+})
 
 test('correct task should be removed', () => {
 

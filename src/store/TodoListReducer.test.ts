@@ -2,7 +2,9 @@ import {v1} from 'uuid';
 import {
     addTodoListAC,
     changeTodoListFilterAC,
-    changeTodoListTitleAC, removeTodoListAC, todoListReducer
+    changeTodoListTitleAC,
+    removeTodoListAC,
+    todoListReducer
 } from "./TodoListReducer";
 import {FilterValuesType, TodolistType} from "../../trash/App";
 
@@ -11,7 +13,7 @@ let todolistId2: string
 
 let startState: Array<TodolistType>
 
-beforeEach(()=>{
+beforeEach(() => {
     todolistId1 = v1();
     todolistId2 = v1();
 

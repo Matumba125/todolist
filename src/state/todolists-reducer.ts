@@ -1,7 +1,5 @@
-import {v1} from 'uuid';
 import {todolistsAPI, TodolistType} from '../api/todolists-api'
 import {Dispatch} from "redux";
-import {AppRootStateType} from "./store";
 
 export type RemoveTodolistActionType = {
     type: 'REMOVE-TODOLIST',
@@ -55,7 +53,7 @@ export const todolistsReducer = (state: Array<TodolistDomainType> = initialState
         }
         case 'ADD-TODOLIST': {
             const newTodoList = {...action.todolist, filter: 'all' as FilterValuesType}
-            const newState =  [newTodoList, ...state]
+            const newState = [newTodoList, ...state]
             return newState
         }
         case 'CHANGE-TODOLIST-TITLE': {

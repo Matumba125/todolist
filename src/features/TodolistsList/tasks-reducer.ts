@@ -4,6 +4,7 @@ import {Dispatch} from 'redux'
 import {AppRootStateType} from '../../app/store'
 import {setAppErrorAC, setAppStatusAC} from "../../app/appReducer";
 import {AxiosError} from "axios";
+import {handleServerAppError, handleServerNetworkError} from "../../utils/error-utils";
 
 const initialState: TasksStateType = {}
 
@@ -86,15 +87,11 @@ export const addTaskTC = (title: string, todolistId: string) => (dispatch: Dispa
                 const task = res.data.data.item
                 dispatch(addTaskAC(task))
             } else {
-                if (res.data.messages.length) {
-                    dispatch(setAppErrorAC(res.data.messages[0]))
-                } else {
-                    dispatch(setAppErrorAC('Error. Please contact administration'))
-                }
+                handleServerAppError(res.data, dispatch)
             }
         })
         .catch((err: AxiosError)=>{
-            dispatch(setAppErrorAC(err.message))
+            handleServerNetworkError(err, dispatch)
         })
         .finally(()=>{
             dispatch(setAppStatusAC('idle'))

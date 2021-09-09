@@ -15,8 +15,7 @@ export const todolistsAPI = {
         return promise;
     },
     createTodolist(title: string) {
-        const promise = instance.post<ResponseType<{ item: TodolistType }>>('todo-lists', {title: title});
-        return promise;
+        return instance.post<ResponseType<{ item: TodolistType }>>('todo-lists', {title: title});
     },
     deleteTodolist(id: string) {
         const promise = instance.delete<ResponseType>(`todo-lists/${id}`);
@@ -39,6 +38,19 @@ export const todolistsAPI = {
         return instance.put<ResponseType<TaskType>>(`todo-lists/${todolistId}/tasks/${taskId}`, model);
     }
 }
+
+export const authAPI = {
+    login(loginForm: LoginParamsType) {
+        return instance.post<ResponseType<{userId: number}>>('/auth/login', loginForm);
+    },
+    me(){
+        return instance.get<ResponseType<UserDataType>>('/auth/me');
+    },
+    logout(){
+        return instance.delete<ResponseType>('/auth/login')
+    }
+}
+
 
 // types
 export type TodolistType = {
@@ -92,4 +104,17 @@ type GetTasksResponse = {
     error: string | null
     totalCount: number
     items: TaskType[]
+}
+
+export type LoginParamsType ={
+    email: string
+    password: string
+    rememberMe: boolean
+    captcha?: string
+}
+
+export type UserDataType={
+    id: number
+    login: string
+    email: string
 }

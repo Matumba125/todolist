@@ -24,3 +24,14 @@
   opacity: 0.5;
 }
 */
+
+.headerWrapper{
+    width: 97%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.leftSideWrapper{
+    display: flex;
+    align-items: center;
+}

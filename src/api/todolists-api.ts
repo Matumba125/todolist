@@ -41,12 +41,12 @@ export const todolistsAPI = {
 
 export const authAPI = {
     login(loginForm: LoginParamsType) {
-        return instance.post<ResponseType<{userId: number}>>('/auth/login', loginForm);
+        return instance.post<ResponseType<{ userId: number }>>('/auth/login', loginForm);
     },
-    me(){
+    me() {
         return instance.get<ResponseType<UserDataType>>('/auth/me');
     },
-    logout(){
+    logout() {
         return instance.delete<ResponseType>('/auth/login')
     }
 }
@@ -106,14 +106,14 @@ type GetTasksResponse = {
     items: TaskType[]
 }
 
-export type LoginParamsType ={
+export type LoginParamsType = {
     email: string
     password: string
     rememberMe: boolean
     captcha?: string
 }
 
-export type UserDataType={
+export type UserDataType = {
     id: number
     login: string
     email: string

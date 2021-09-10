@@ -25,13 +25,13 @@
 }
 */
 
-.headerWrapper{
+.headerWrapper {
     width: 97%;
     display: flex;
     justify-content: space-between;
 }
 
-.leftSideWrapper{
+.leftSideWrapper {
     display: flex;
     align-items: center;
 }

@@ -47,11 +47,11 @@ export const initializeAppTC = () => (dispatch: Dispatch) => {
         } else {
             handleServerAppError(res.data, dispatch);
         }
-        })
+    })
         .catch((error) => {
             handleServerNetworkError(error, dispatch)
         })
-        .finally(()=>{
+        .finally(() => {
             dispatch(setIsInitializedAC(true))
         })
 }
@@ -71,7 +71,6 @@ export const logoutTC = () => (dispatch: Dispatch<ActionsType>) => {
             handleServerNetworkError(error, dispatch)
         })
 }
-
 
 
 // types

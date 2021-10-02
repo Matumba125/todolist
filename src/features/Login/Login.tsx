@@ -1,6 +1,6 @@
 import React from 'react'
 import {Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, TextField} from '@material-ui/core'
-import {useFormik} from "formik";
+import {FormikHelpers, useFormik} from "formik";
 import {useDispatch, useSelector} from "react-redux";
 import {loginTC} from './authReducer';
 import {AppRootStateType} from "../../app/store";
@@ -10,6 +10,12 @@ type FormikErrorType = {
     email?: string
     password?: string
     rememberMe?: boolean
+}
+
+type FormValuesType = {
+    email: string
+    password: string
+    rememberMe: boolean
 }
 
 
@@ -42,15 +48,15 @@ export const Login = () => {
 
             return errors;
         },
-        onSubmit: values => {
-            dispatch(loginTC(values));
+        onSubmit: async (values, formikHelpers: FormikHelpers<FormValuesType>) => {
+            await dispatch(loginTC(values));
             formik.resetForm();
         },
     })
 
 
     if (isLoggedIn) {
-        return <Redirect to={'/todolist'}/>
+        return <Redirect to={'/'}/>
     }
 
     return <Grid container justify="center">

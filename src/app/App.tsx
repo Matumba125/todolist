@@ -12,11 +12,7 @@ import {Login} from '../features/Login/Login'
 import {initializeAppTC, logoutTC} from "../features/Login/authReducer";
 import CircularProgress from '@material-ui/core/CircularProgress'
 
-type PropsType = {
-    demo?: boolean
-}
-
-function App({demo = false}: PropsType) {
+function App() {
     const status = useSelector<AppRootStateType, RequestStatusType>((state) => state.app.status)
     const isInitialized = useSelector<AppRootStateType, boolean>((state) => state.app.isInitialized)
     const isLoggedIn = useSelector<AppRootStateType, boolean>((state) => state.auth.isLoggedIn)
@@ -24,11 +20,11 @@ function App({demo = false}: PropsType) {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(initializeAppTC())
+        dispatch(initializeAppTC({}))
     }, [])
 
     const onCLickHandler = () => {
-        dispatch(logoutTC())
+        dispatch(logoutTC({}))
     }
 
     if (!isInitialized) {
@@ -59,9 +55,9 @@ function App({demo = false}: PropsType) {
             </AppBar>
             <Container fixed>
                 <Switch>
-                    <Route exact path={'/todolist'} render={() => <TodolistsList demo={demo}/>}/>
-                    <Route path={'/todolist/login'} render={() => <Login/>}/>
-                    <Route path={'/todolist/404'} render={() => <h1>404: PAGE NOT FOUND</h1>}/>
+                    <Route exact path={'/'} render={() => <TodolistsList/>}/>
+                    <Route path={'/login'} render={() => <Login/>}/>
+                    <Route path={'/404'} render={() => <h1>404: PAGE NOT FOUND</h1>}/>
                     <Redirect from={'*'} to={'/404'}/>
                 </Switch>
             </Container>

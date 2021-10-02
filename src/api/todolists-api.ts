@@ -11,19 +11,16 @@ const instance = axios.create({
 // api
 export const todolistsAPI = {
     getTodolists() {
-        const promise = instance.get<TodolistType[]>('todo-lists');
-        return promise;
+        return instance.get<TodolistType[]>('todo-lists');
     },
     createTodolist(title: string) {
         return instance.post<ResponseType<{ item: TodolistType }>>('todo-lists', {title: title});
     },
     deleteTodolist(id: string) {
-        const promise = instance.delete<ResponseType>(`todo-lists/${id}`);
-        return promise;
+        return instance.delete<ResponseType>(`todo-lists/${id}`);
     },
     updateTodolist(id: string, title: string) {
-        const promise = instance.put<ResponseType>(`todo-lists/${id}`, {title: title});
-        return promise;
+        return instance.put<ResponseType>(`todo-lists/${id}`, {title: title});
     },
     getTasks(todolistId: string) {
         return instance.get<GetTasksResponse>(`todo-lists/${todolistId}/tasks`);
@@ -59,9 +56,14 @@ export type TodolistType = {
     addedDate: string
     order: number
 }
+export type FieldErrorType ={
+    error: string
+    field: string
+}
 export type ResponseType<D = {}> = {
     resultCode: number
     messages: Array<string>
+    fieldsError?: FieldErrorType[]
     data: D
 }
 

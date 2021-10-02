@@ -82,5 +82,3 @@ const slice = createSlice({
 export const authReducer = slice.reducer
 
 const {setIsLoggedInAC} = slice.actions
-
-// thunks

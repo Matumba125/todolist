@@ -5,7 +5,7 @@ import {
     addTodolistTC,
     changeTodolistFilterAC,
     changeTodolistTitleTC,
-    fetchTodolistsTC,
+    fetchTodoListsTC,
     FilterValuesType,
     removeTodolistTC,
     TodolistDomainType
@@ -19,13 +19,13 @@ import {Redirect} from "react-router-dom";
 
 
 export const TodolistsList: React.FC = () => {
-    const todolists = useSelector<AppRootStateType, Array<TodolistDomainType>>(state => state.todolists)
+    const todolists = useSelector<AppRootStateType, Array<TodolistDomainType>>(state => state.todoLists)
     const tasks = useSelector<AppRootStateType, TasksStateType>(state => state.tasks)
     const isLoggedIn = useSelector<AppRootStateType, boolean>(state => state.auth.isLoggedIn)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        const thunk = fetchTodolistsTC()
+        const thunk = fetchTodoListsTC()
         dispatch(thunk)
     }, [])
 
@@ -60,7 +60,7 @@ export const TodolistsList: React.FC = () => {
     }, [])
 
     const changeTodolistTitle = useCallback(function (id: string, title: string) {
-        const thunk = changeTodolistTitleTC(id, title)
+        const thunk = changeTodolistTitleTC({id, title})
         dispatch(thunk)
     }, [])
 

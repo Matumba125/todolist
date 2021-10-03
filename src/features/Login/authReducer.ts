@@ -25,7 +25,7 @@ export const loginTC = createAsyncThunk('auth/login', async (data: LoginParamsTy
 
 })
 
-export const logoutTC = createAsyncThunk('auth/logout', async (param: {}, thunkAPI) => {
+export const logoutTC = createAsyncThunk('auth/logout', async (param, thunkAPI) => {
     try {
         thunkAPI.dispatch(setAppStatusAC({status: 'loading'}))
         const res = await authAPI.logout()
@@ -44,7 +44,7 @@ export const logoutTC = createAsyncThunk('auth/logout', async (param: {}, thunkA
     }
 })
 
-export const initializeAppTC = createAsyncThunk('auth/initializeApp', async (param: {}, thunkAPI) => {
+export const initializeAppTC = createAsyncThunk('auth/initializeApp', async (param, thunkAPI) => {
     try {
         const res = await authAPI.me()
         if (res.data.resultCode === 0) {

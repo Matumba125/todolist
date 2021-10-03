@@ -20,11 +20,11 @@ function App() {
     const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(initializeAppTC({}))
+        dispatch(initializeAppTC())
     }, [])
 
     const onCLickHandler = () => {
-        dispatch(logoutTC({}))
+        dispatch(logoutTC())
     }
 
     if (!isInitialized) {

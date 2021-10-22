@@ -55,10 +55,10 @@ function App() {
             </AppBar>
             <Container fixed>
                 <Switch>
-                    <Route exact path={'/'} render={() => <TodolistsList/>}/>
-                    <Route path={'/login'} render={() => <Login/>}/>
-                    <Route path={'/404'} render={() => <h1>404: PAGE NOT FOUND</h1>}/>
-                    <Redirect from={'*'} to={'/404'}/>
+                    <Route exact path={'/todolist'} render={() => <TodolistsList/>}/>
+                    <Route path={'/todolist/login'} render={() => <Login/>}/>
+                    <Route path={'/todolist/404'} render={() => <h1>404: PAGE NOT FOUND</h1>}/>
+                    <Redirect from={'*'} to={'/todolist/404'}/>
                 </Switch>
             </Container>
         </div>
